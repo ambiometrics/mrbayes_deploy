@@ -1,25 +1,21 @@
 #!/bin/sh
-#This instructions are based on the README at following location https://nbisweden.github.io/MrBayes/download.html
+#Instructions from https://github.com/stephaneguindon/phyml
 
 rm -rf sources
 mkdir sources && cd sources
 
-#Download the latest releasea from https://github.com/stephaneguindon/phyml/releases
-wget -O mrbayes.tar.gz https://github.com/NBISweden/MrBayes/archive/v3.2.7a.tar.gz
+#Download the latest releasea from https://github.com/NBISweden/MrBayes/releases
+wget -O mrbayes.zip https://github.com/NBISweden/MrBayes/releases/download/v3.2.7/MrBayes-3.2.7-WIN.zip
 
-rm -rf mrbayes
-mkdir mrbayes
-tar xfvz mrbayes.tar.gz -C mrbayes --strip-components 1
+unzip mrbayes.zip
 
 #prepare directory
-cd mrbayes
+mv MrBayes-3.2.7-WIN mrbayes
 
-./configure
-make
+cd ..
 
-cd ../..
 rm -rf release
 mkdir release
-cp sources/mrbayes/src/mb release
+cp sources/mrbayes/bin/mb.3.2.7-win64.exe release/mb.exe
 
 
